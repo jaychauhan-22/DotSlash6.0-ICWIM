@@ -44,7 +44,6 @@ const Home = () => {
                     console.log(mymap);
                     mymap.forEach((values, keys) => (
                         newarray.push({value:values,key:keys})
-
                     ))
                     console.log(newarray);
                     // console.log(mymap);

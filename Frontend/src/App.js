@@ -11,6 +11,7 @@ import NewUserRegistration from "./components/admincomponents/new-user-registrat
 import WasteCollectionEntry from "./components/admincomponents/waste-collection-entry";
 import Carousel from "./components/intro/carousel";
 import Footer from "./components/intro/footer";
+import Cards from "./components/intro/cards";
 import Navbar from "./components/intro/navbar";
 import GenerateHouseTax from "./components/maincomponents/generate-house-tax";
 import Home from "./components/maincomponents/home";
@@ -25,6 +26,7 @@ function mainLayout() {
     <Navbar/>
     <div>
       <Carousel></Carousel>
+      <Cards />
       <Outlet/>
     </div>
     <Footer/>

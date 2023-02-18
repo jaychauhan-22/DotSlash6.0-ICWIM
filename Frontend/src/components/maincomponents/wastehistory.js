@@ -25,16 +25,17 @@ const Wastehistory = () => {
   const [weightinkilo, setWeightInKilo] = useState("");
   const [totalpoints, setTotalPoints] = useState("");
   const [pointsperkg, setPointsPerKG] = useState("");
+  const [numberofDaysinMonth, setnumberofDaysinMonth] = useState("");
 
 
-    useEffect((e) => {
+  useEffect((e) => {
 
-        console.log(dateState);
-        changeDate();
-    }, [dateState]);
-    const changeDate = (e) => {
-        let datelocal = moment(dateState).format('D-MM-YYYY');
-        let userid = window.localStorage.getItem("token");
+    console.log(dateState);
+    changeDate();
+  }, [dateState]);
+  const changeDate = (e) => {
+    let datelocal = moment(dateState).format('YYYY-MM-DD');
+    let userid = window.localStorage.getItem("token");
 
     fetch(`http://localhost:8000/waste/${userid}/${datelocal}`, {
       method: "get",
@@ -63,9 +64,17 @@ const Wastehistory = () => {
         console.log(data);
       });
   };
+  const handleCalenderEvent = (e) => {
+    setDateState(e);
+    let m = moment(dateState).format('MM');
+    let y = moment(dateState).format('YYYY');
+    let ndate = new Date(y, m, 0).getDate();
+    setnumberofDaysinMonth(ndate);
+    
+  }
   return (
     <>
-    <Homenav/>
+      <Homenav />
       <div className="container rounded bg-white my-5">
         <div className="row">
           <div className="col-md-4 border-right m-5">
@@ -76,10 +85,11 @@ const Wastehistory = () => {
             <Calendar
               className={"my-3"}
               value={dateState}
-              onChange={(e) => setDateState(e)}
+              onChange={handleCalenderEvent}
             />
-            
-            Analytics about Current Month: {moment(dateState).format('MM')}
+
+            Analytics about Current Month:
+            {numberofDaysinMonth}
             {/* <p>Current selected date is <b>{
                             moment(dateState).format('D/M/YYYY')
 
@@ -92,46 +102,46 @@ const Wastehistory = () => {
                             <span className="text-black-50 h5">email</span>
                         </div> */}
 
-                    </div>
-                    <div className="col-md-5 col-sm-12 border-right my-5 mx-3">
-                        <table class="table table-borderless my-5">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" className='h4'><li>Property ID:</li></th>
-                                    <td className='h5'>{propertyid}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" className='h4'><li>Waste Collected Date:</li></th>
-                                    <td className='h5'>{wastecollecteddate}</td>
-                                </tr>
-                                <br />
-                                <tr>
-                                    <th scope="row" className='h4'><u>Collection Details</u></th>
-                                </tr>
-                                <tr>
-                                    <th scope="row" className='h4'><li>In Kilos:</li></th>
-                                    <td className='h5'>{weightinkilo} KG</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" className='h4'><li>Total Points:</li></th>
-                                    <td className='h5'>{totalpoints} pts</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" className='h4'><li>Points per kg (Then):</li></th>
-                                    <td className='h5'>{pointsperkg} pts</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className='mx-5 mb-5'>
-                        <div style={{ width: '90%' }}>
-                            <Barchart />
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div className="col-md-5 col-sm-12 border-right my-5 mx-3">
+            <table class="table table-borderless my-5">
+              <tbody>
+                <tr>
+                  <th scope="row" className='h4'><li>Property ID:</li></th>
+                  <td className='h5'>{propertyid}</td>
+                </tr>
+                <tr>
+                  <th scope="row" className='h4'><li>Waste Collected Date:</li></th>
+                  <td className='h5'>{wastecollecteddate}</td>
+                </tr>
+                <br />
+                <tr>
+                  <th scope="row" className='h4'><u>Collection Details</u></th>
+                </tr>
+                <tr>
+                  <th scope="row" className='h4'><li>In Kilos:</li></th>
+                  <td className='h5'>{weightinkilo} KG</td>
+                </tr>
+                <tr>
+                  <th scope="row" className='h4'><li>Total Points:</li></th>
+                  <td className='h5'>{totalpoints} pts</td>
+                </tr>
+                <tr>
+                  <th scope="row" className='h4'><li>Points per kg (Then):</li></th>
+                  <td className='h5'>{pointsperkg} pts</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className='mx-5 mb-5'>
+            <div style={{ width: '90%' }}>
+              <Barchart />
             </div>
-        </>
-    );
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Wastehistory;

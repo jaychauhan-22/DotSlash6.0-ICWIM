@@ -98,8 +98,8 @@ const Usersignup = () => {
                                 </div>
                                 <select required className="form-select" aria-label="Default select example" onChange={(e) => setGender(e.target.value)}>
                                     <option selected>Select Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
                                 </select>
                                 <br />
                                 <div className='d-grid gap-2'>
