@@ -61,22 +61,6 @@ function mongoConnected() {
             return res.status(200).json(users[0]);
         });
     });
-    /*Get Specific User by Email*/
-    app.get("/user/singleUserbyEmail/:email", (req, res) => {
-        user.findOne({ email: req.params.email }, (err, users) => {
-            
-            if (err) {
-                return res.status(400).json({ status: "error", error: err });
-            }
-            if (users) {
-                return res.status(200).json(users);
-            }
-            else{
-                return res.json({ status: "error", error: "User not found" });
-            
-            }
-        });
-    });
 
     /* Login Authentication */
     app.post("/user/login-user", (req, res) => {
@@ -210,15 +194,11 @@ function mongoConnected() {
 
     /*Property Fetch Specific*/
     app.get("/property/:id", (req, res) => {
-        property.findOne({ propertyid: req.params.id }, (err, p) => {
-            
+        property.find({ propertyid: req.params.id }, (err, p) => {
             if (err) {
-                return res.status(400).json({ status: "error", error: error });
+                return res.status(400).json({ error: err });
             }
-            if(p)
-                return res.status(200).json(p);
-            else
-                return res.json({ status: "error", error: "Property not found" });
+            return res.status(200).json(p[0]);
         });
     });
 
@@ -250,13 +230,12 @@ function mongoConnected() {
 
     /*Waste History Insert */
     app.post("/wasteHistory", async (req, res) => {
-        const { userid, username, propertyid, wasteDepositDate, kilos, pointsperkg } = req.body;
+        const { userid, propertyid, wasteDepositDate, kilos, pointsperkg } = req.body;
         var ttlpt = kilos * pointsperkg;
 
         try {
             await waste.create({
                 userid,
-                username,
                 propertyid,
                 wasteDepositDate,
                 kilos,
@@ -303,12 +282,12 @@ function mongoConnected() {
 
     /*Waste History Update */
     app.put("/waste/update/:id", async (req, res) => {
-        const { userid,username, propertyid, wasteDepositDate, kilos, ttlpt, pointsperkg } = req.body;
+        const { userid, propertyid, wasteDepositDate, kilos, ttlpt, pointsperkg } = req.body;
 
         try {
             const result = await waste.updateOne(
                 { userid: req.params.id },
-                { $set: { userid: userid,username:username, propertyid: propertyid, wasteDepositDate: wasteDepositDate, kilos: kilos, ttlpt: ttlpt, pointsperkg: pointsperkg } }
+                { $set: { userid: userid, propertyid: propertyid, wasteDepositDate: wasteDepositDate, kilos: kilos, ttlpt: ttlpt, pointsperkg: pointsperkg } }
             );
             return res.json({ status: "Updated", data: result });
         } catch (error) {

@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const wasteSchema = new mongoose.Schema(
 {
     userid:String,
-    username:String,
     propertyid:String,
     wasteDepositDate: String,
     kilos:Number,
