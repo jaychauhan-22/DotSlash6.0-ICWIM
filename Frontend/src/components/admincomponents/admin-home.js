@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const AdminHome = () => {
     let navigate = useNavigate();
     const [topusers, setTopUsers] = useState([{}]);
+    const [topusersmap, setTopUsersmap] = useState([{}]);
     useEffect(() => {
         if (window.localStorage.getItem("admintoken") == null)
             navigate("/");
@@ -21,8 +22,32 @@ const AdminHome = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.status != "error") {
-                    console.log(data);
-                    setTopUsers(data);
+                    // data.map((ele) => {
+                    //     console.log(ele);
+                    // })
+                    let mymap = new Map();
+                    let newarray = [];
+                    let unique = data.filter(el => {
+                        let val = mymap.get(el.username);
+                        console.log(val);
+                        if (val) {
+                            let oldpts = mymap.get(el.ttlpt)
+                            mymap.set(el.username, val + el.ttlpt);
+                            return true;
+                        }
+                        mymap.set(el.username, el.ttlpt);
+                        return true;
+                    });
+                    console.log(unique);
+                    // data = Object.Entries(mymap);
+                    console.log(mymap);
+                    mymap.forEach((values, keys) => (
+                        newarray.push({value:values,key:keys})
+                    ))
+                    console.log(newarray);
+                    // console.log(mymap);
+                    // setTopUsers(data);
+                    setTopUsersmap(newarray);
 
                 } else {
                 }
@@ -46,13 +71,15 @@ const AdminHome = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {topusers.map((ele,index) => (  
-                    <tr>
-                        <th scope="row">{index+1}</th>
-                        <td>{ele.username}</td>
-                        <td>{ele.ttlpt} pts</td>
-                    </tr>
-                    ))}  
+                {
+                            
+                            topusersmap.map((ele, index) => (
+                                <tr>
+                                    <th scope="row">{index + 1}</th>
+                                    <td>{ele.key}</td>
+                                    <td>{ele.value} pts</td>
+                                </tr>
+                            ))}
                 </tbody>
             </table>
                 
