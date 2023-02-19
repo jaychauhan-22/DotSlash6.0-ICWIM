@@ -224,7 +224,7 @@ function mongoConnected() {
 
     /*Property Fetch based on ward no*/
     app.get("/property/ward/:wardno", (req, res) => {
-        property.findOne({ wardno: req.params.wardno }, (err, p) => {
+        property.find({ wardno: req.params.wardno }, (err, p) => {
             
             if (err) {
                 return res.status(400).json({ status: "error", error: error });
