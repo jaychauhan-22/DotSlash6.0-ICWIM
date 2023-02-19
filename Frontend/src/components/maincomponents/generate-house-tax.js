@@ -8,6 +8,9 @@ import {
   PDFViewer,
 } from "@react-pdf/renderer";
 const styles = StyleSheet.create({
+  centertext: {
+    textAlign: "center"
+  },
   page: {
     backgroundColor: "white",
     color: "black",
@@ -55,11 +58,13 @@ const GenerateHouseTax = () => {
           {/*render a single page*/}
           <Page size="A4" style={styles.page}>
             <View style={styles.section}>
-              <Text>INITIATIVE TO CONVERT WASTE INTO MONEY</Text>
+              <Text style={styles.centertext}>INITIATIVE TO CONVERT WASTE INTO MONEY</Text>
             </View>
             <View style={styles.section}>
-            <Text>Name: Jay Chauhan</Text>
-            <Text>Property Id: 132456</Text>
+              <Text style={{ margin: "5px 70px" }}>Name: Jay Chauhan</Text>
+              <Text style={{ margin: "5px 70px" }}>Property Id: 132456</Text>
+              <Text style={{ margin: "5px 70px" }}>Ward No: 3</Text>
+              <Text style={{ margin: "5px 70px" }}>Email: jay189.chauhan@gmail.com</Text>
             </View>
             <View style={styles.table}>
               <View style={styles.tableRow}>
@@ -126,6 +131,17 @@ const GenerateHouseTax = () => {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>4450</Text>
+                </View>
+              </View>
+              <View style={styles.tableRow}>
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}></Text>
+                </View>
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}></Text>
+                </View>
+                <View style={styles.tableCol}>
+                  <Text style={styles.tableCell}></Text>
                 </View>
               </View>
               <View style={styles.tableRow}>

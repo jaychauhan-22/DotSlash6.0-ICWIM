@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import AdminNavbar from './admin-navbar';
 const NewUserRegistration = () => {
     let navigate = useNavigate();
+    useEffect(() => {
+        if (window.localStorage.getItem("admintoken") == null)
+            navigate("/");
+    }, []);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

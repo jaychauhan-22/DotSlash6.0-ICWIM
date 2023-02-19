@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import AdminNavbar from './admin-navbar';
 import moment from 'moment'
 import { useNavigate } from "react-router-dom";
 
 const WasteCollectionEntry = () => {
     let navigate = useNavigate();
+    useEffect(() => {
+        if (window.localStorage.getItem("admintoken") == null)
+            navigate("/");
+    }, []);
     const [findPropertyId, setPropertyId] = useState("");
     const [ownerId, setOwnerId] = useState("");
     const [ownername, setOwnerName] = useState("");
@@ -142,12 +146,25 @@ const WasteCollectionEntry = () => {
                                     </div>
 
                                     <div className="form-floating mb-3">
+
+                                    <select required className="form-select form-control" aria-label="Default select example" value={pointsperkg} onChange={(e) => {
+                                            let v = e.target.value * wasteinkilo;
+                                            setTotalPoints(v);
+                                            setPointsPerKG(e.target.value)
+                                        }}>
+                                        <option value="">Select Appropriate Option.</option>
+                                        <option value="5">5 pts - For Plastic and Metal Waste</option>
+                                        <option value="10">10 pts - For Organic Waste</option>
+                                    </select>
+                                    <label className="form-label" htmlFor="Gender">Points Per Kilo</label>
+
+{/* 
                                         <input required type="number" id="pointsperkg" value={pointsperkg} className="form-control form-control-lg" placeholder='Points Per KG' onChange={(e) => {
                                             let v = e.target.value * wasteinkilo;
                                             setTotalPoints(v);
                                             setPointsPerKG(e.target.value)
                                         }} />
-                                        <label className="form-label" htmlFor="pointsperkg">Points Per KG</label>
+                                        <label className="form-label" htmlFor="pointsperkg">Points Per KG</label> */}
                                     </div>
                                     <div className="form-floating mb-3">
                                         <input disabled required type="number" id="totalpoints" value={totalpoints} className="form-control form-control-lg" placeholder='Total Points' />
