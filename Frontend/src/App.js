@@ -20,6 +20,7 @@ import Wastehistory from "./components/maincomponents/wastehistory";
 import Adminlogin from "./components/registration/adminlogin";
 import Login from "./components/registration/login";
 import Usersignup from "./components/registration/usersignup";
+import Wardinfo from "./components/maincomponents/wardinfo";
 
 function mainLayout() {
   return (<>
@@ -42,6 +43,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/userprofile" element={<Userprofile/>}/>
         <Route path="/user-signup" element={<Usersignup/>}/>
+        <Route path="/ward-information" element={<Wardinfo/>}/>
         <Route path="/generate-house-tax" element={<GenerateHouseTax/>}/>
         <Route path="/admin-login" element={<Adminlogin/>}/>
         <Route path="/admin-home" element={<AdminHome/>}/>

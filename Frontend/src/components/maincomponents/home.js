@@ -23,14 +23,12 @@ const Home = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.status != "error") {
-                    // data.map((ele) => {
-                    //     console.log(ele);
-                    // })
+
                     let mymap = new Map();
                     let newarray = [];
+                    
                     let unique = data.filter(el => {
                         let val = mymap.get(el.username);
-                        console.log(val);
                         if (val) {
                             let oldpts = mymap.get(el.ttlpt)
                             mymap.set(el.username, val + el.ttlpt);
@@ -39,34 +37,54 @@ const Home = () => {
                         mymap.set(el.username, el.ttlpt);
                         return true;
                     });
-                    console.log(unique);
-                    // data = Object.Entries(mymap);
-                    console.log(mymap);
                     mymap.forEach((values, keys) => (
                         newarray.push({value:values,key:keys})
                     ))
-                    console.log(newarray);
-                    // console.log(mymap);
-                    // setTopUsers(data);
+                    newarray.map((ele=>{
+                        
+                    }))
                     setTopUsersmap(newarray);
+                    // console.log(newarray);
+                    // FetchWardno()
 
                 } else {
                 }
 
             });
+        const fetchWardNo = (propertyid)=>{
+            fetch(`http://localhost:8000/property/${propertyid}`, {
+            method: "GET",
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+            }
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.status != "error") {
+                    
+
+                } else {
+                }
+
+            });
+
+        }
     }, []);
     return (
         <div className='text-style'>
             <Homenav />
             <label className='h2 m-4 justify-content-center d-flex'>Top Rankings on the LeaderBoard: </label>
             <div className="container rounded bg-white justify-content-center d-flex my-4 px-5 py-3">
-                {console.log(topusers)}
-                <table class="table table-hover table-responsive-lg">
+                
+                <table className="table table-hover table-responsive-lg">
 
                     <caption>List of users with its corresponding points</caption>
-                    <thead class="thead-dark table-warning">
+                    <thead className="thead-dark table-warning">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">#RANK</th>
                             <th scope="col">USERNAME</th>
                             <th scope="col">TOTAL POINTS</th>
                         </tr>

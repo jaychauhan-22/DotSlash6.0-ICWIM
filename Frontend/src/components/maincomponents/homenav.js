@@ -18,10 +18,13 @@ const Homenav = () => {
 
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item active">
-                                <Link to={"/waste-history"} className={"nav-link text-warning"}>Waste Collection</Link>
+                                <Link to={"/waste-history"} className={"nav-link text-warning"}>Waste-Collection</Link>
+                            </li>
+                            <li class="nav-item active">
+                                <Link to={"/ward-information"} className={"nav-link text-warning"}>Ward-Information</Link>
                             </li>
                             <li class="nav-item">
-                                <Link class="nav-link text-warning" to={"/generate-house-tax"}>Generate House Tax</Link>
+                                <Link class="nav-link text-warning" to={"/generate-house-tax"}>Generate-House-Tax</Link>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
