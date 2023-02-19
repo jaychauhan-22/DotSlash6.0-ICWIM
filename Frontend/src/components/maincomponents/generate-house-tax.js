@@ -59,6 +59,7 @@ const GenerateHouseTax = () => {
           <Page size="A4" style={styles.page}>
             <View style={styles.section}>
               <Text style={styles.centertext}>INITIATIVE TO CONVERT WASTE INTO MONEY</Text>
+              <Text style={styles.centertext}>HOUSE TAX</Text>
             </View>
             <View style={styles.section}>
               <Text style={{ margin: "5px 70px" }}>Name: Jay Chauhan</Text>

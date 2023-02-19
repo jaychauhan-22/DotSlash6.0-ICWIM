@@ -127,7 +127,7 @@ const WasteCollectionEntry = () => {
                             <form onSubmit={handleSubmit}>
                                 <div className="p-3 py-5">
                                     <div className="d-flex justify-content-between align-items-center mb-3">
-                                        <h4 className="text-right">Collected Waste Information by User:</h4>
+                                        <h4 className="text-right">Collected Waste Information From User:</h4>
                                     </div>
                                     <div className="form-floating mb-3 col">
                                         <input required type="text" id="propertyid" value={findPropertyId} className="form-control x-3" placeholder='Enter PropertyId' disabled />
