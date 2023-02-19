@@ -222,6 +222,20 @@ function mongoConnected() {
         });
     });
 
+    /*Property Fetch based on ward no*/
+    app.get("/property/ward/:wardno", (req, res) => {
+        property.findOne({ wardno: req.params.wardno }, (err, p) => {
+            
+            if (err) {
+                return res.status(400).json({ status: "error", error: error });
+            }
+            if(p)
+                return res.status(200).json(p);
+            else
+                return res.json({ status: "error", error: "Data not found" });
+        });
+    });
+
     /*Property Update*/
     app.put("/property/update/:id", async (req, res) => {
         const { propertyid, ownerid, address, wardno } = req.body;
@@ -335,6 +349,7 @@ function mongoConnected() {
             return res.status(200).json({ result });
         });
     }); 
+
 
 }
 /*----------------------------------------------------------------------*/
