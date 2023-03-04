@@ -53,6 +53,6 @@ HTML
 CSS ()
 
 # Developers:
-Jay Chauhan
-Madhav Dhokiya
+Jay Chauhan<br>
+Madhav Dhokiya<br>
 Jaydipsinh Zala
