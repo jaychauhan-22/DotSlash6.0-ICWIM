@@ -48,9 +48,9 @@ This project is a part of Waste Management System(An initiative towards the clea
 
 
 # Tech Stack:
-MERN (Mongo, React, Express, Node)
-HTML
-CSS ()
+MERN (Mongo, React, Express, Node)<br>
+HTML<br>
+CSS
 
 # Developers:
 Jay Chauhan<br>
